@@ -12,7 +12,7 @@ import datetime
 import sys
 import os
 import time
-from typing import Optional
+from typing import Optional, Union
 import requests as _requests
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -243,7 +243,7 @@ def get_osm_url(lat: float, lon: float) -> str:
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
-def load_schedule(lat: float, lon: float, date_str: str) -> list | str:
+def load_schedule(lat: float, lon: float, date_str: str) -> Union[list, str]:
     """Cached wrapper around sun_schedule. Returns list or error string."""
     try:
         from sun_rating import sun_schedule
